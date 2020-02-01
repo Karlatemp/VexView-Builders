@@ -1,0 +1,7 @@
+name: VexView-Builders-Tester
+main: lk.vexview.builders.BuilderTester
+version: '1.0'
+depend:
+  - VexView
+commands:
+  vg: {}
