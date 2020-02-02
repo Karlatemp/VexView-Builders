@@ -160,4 +160,10 @@ public class ChannelBuilder implements Listener {
         }, EventPriority.MONITOR, plugin, false));
         eventHandlerRegistered = true;
     }
+
+    // @version 1.0.2
+    public VexChatChannel getChannel() {
+        if (channel == null) register();
+        return channel;
+    }
 }

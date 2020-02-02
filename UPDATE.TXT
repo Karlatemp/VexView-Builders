@@ -1,4 +1,6 @@
 # VexView-Builder 更新记录
+1.0.2
+    ChannelBuilder#getChannel()Llk/vexview/chat/VexChatChannel;
 1.0.1
     ScrollingListBuilder:
         修复newContext没有复制leftOffset和topOffset的错误
