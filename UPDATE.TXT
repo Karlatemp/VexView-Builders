@@ -1,0 +1,7 @@
+# VexView-Builder 更新记录
+1.0.1
+    ScrollingListBuilder:
+        修复newContext没有复制leftOffset和topOffset的错误
+        添加当前不是根构建器的时候offset/location用于子组件构建偏移的机制
+1.0
+    GitHub 第一次Push的版本

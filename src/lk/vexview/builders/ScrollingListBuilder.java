@@ -99,6 +99,8 @@ public class ScrollingListBuilder extends Locator {
      */
     @Override
     public ScrollingListBuilder location(int x, int y) {
+        // @version 1.0.1: 当不是根构建器的时候用于组件构建原点设置
+        if (parent != null) return componentLocation(x, y);
         super.location(x, y);
         return this;
     }
@@ -118,6 +120,8 @@ public class ScrollingListBuilder extends Locator {
      */
     @Override
     public ScrollingListBuilder offset(int x, int y) {
+        // @version 1.0.1: 当不是根构建器的时候用于组件构建原点移动
+        if (parent != null) return componentOffset(x, y);
         super.offset(x, y);
         return this;
     }
@@ -245,6 +249,9 @@ public class ScrollingListBuilder extends Locator {
         copy.rightOffset = rightOffset;
         copy.fullHeight = fullHeight;
         copy.parent = this;
+        // @version 1.0.1: 没有LT复制
+        copy.leftOffset = leftOffset;
+        copy.topOffset = topOffset;
         return copy;
     }
 
