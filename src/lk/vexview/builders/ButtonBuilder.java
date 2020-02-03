@@ -13,6 +13,7 @@ import lk.vexview.hud.VexButtonShow;
 import org.bukkit.map.MinecraftFont;
 
 import java.lang.invoke.MethodHandles;
+import java.util.Objects;
 
 /**
  * 这是一个按钮的构造器
@@ -38,7 +39,9 @@ import java.lang.invoke.MethodHandles;
  * @author Karlatemp
  * @since 2.6
  */
-public class ButtonBuilder {
+@BuilderCommit("1.0.3: extends Locator")
+public class ButtonBuilder extends Locator {//@version 1.0.3: Extends Locator.
+
     static class ClickableButtonBuilder extends ButtonBuilder {
         protected boolean clickable;
         protected String unclickable;
@@ -51,8 +54,10 @@ public class ButtonBuilder {
 
         @Override
         public VexButton build() {
+            checkup();
+            Objects.requireNonNull(unclickable, "Unclickable Image unset");
             VexButton button = new VexClickableButton(id, text,
-                    background, focus, unclickable, x, y,
+                    background, focus, unclickable, xOffset, yOffset,
                     width, height, clickable);
             if (c != null) button.setFunction(c);
             if (hover != null) button.setHover(hover);
@@ -66,13 +71,19 @@ public class ButtonBuilder {
         }
     }
 
+    @Override
+    public ButtonBuilder copy(Locator newLocation) {
+        return (ButtonBuilder) super.copy(newLocation);
+    }
+
     static {
         ReflectionUtil.register(ButtonBuilder.class, MethodHandles.lookup());
     }
 
     protected String id;
-    protected int x;
-    protected int y;
+    // @version 1.0.3: Move to Locator
+    // protected int x;
+    // protected int y;
     protected ButtonFunction c;
     protected VexHoverText hover;
     protected String focus;
@@ -117,9 +128,10 @@ public class ButtonBuilder {
      * @return 构造器本身
      * @see #offset(int, int)
      */
+    // @version: 1.0.3 Override
+    @Override
     public ButtonBuilder location(int x, int y) {
-        this.x = x;
-        this.y = y;
+        super.location(x, y);
         return this;
     }
 
@@ -149,9 +161,10 @@ public class ButtonBuilder {
      * @return 构造器本身
      * @see #location(int, int)
      */
+    // @version: 1.0.3 Override
+    @Override
     public ButtonBuilder offset(int x, int y) {
-        this.x += x;
-        this.y += y;
+        super.offset(x, y);
         return this;
     }
 
@@ -248,9 +261,16 @@ public class ButtonBuilder {
         return build0();
     }
 
+    protected void checkup() {
+        Objects.requireNonNull(id, "Button id unset");
+        Objects.requireNonNull(background, "Button background unset");
+        Objects.requireNonNull(focus, "Button focus unset");
+    }
+
     private VexButton build0() {
+        checkup();
         VexButton button = new VexButton(id, text,
-                background, focus, x, y,
+                background, focus, xOffset, yOffset,
                 width, height);
         if (width == 0 || height == 0) {
             ChannelBuilder.plugin.getLogger().warning("Button [" + id + "] size is 0.");
