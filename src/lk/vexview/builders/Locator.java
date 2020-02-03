@@ -9,7 +9,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.function.Consumer;
 
 /**
- * 一个用于相对移动/区块设计用的定位器
+ * 一个用于相对移动/区块设计用的定位器.
  *
  * <pre>{@code
  * VexSlot slot = Locator.locator()

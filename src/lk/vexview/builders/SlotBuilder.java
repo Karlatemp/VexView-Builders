@@ -11,8 +11,9 @@ import org.bukkit.inventory.ItemStack;
 import java.lang.invoke.MethodHandles;
 
 /**
- * 一个{@link VexSlot}的快速构造器
- * <p><pre>{@code
+ * 一个{@link VexSlot}的快速构造器.
+ *
+ * <pre>{@code
  * VexSlot slot = SlotBuilder.builder()
  *      .offset(0, 20) //位置
  *      .item( stack )
@@ -21,7 +22,7 @@ import java.lang.invoke.MethodHandles;
  * }</pre>
  *
  * @author Karlatemp
- * @since 2.6
+ * @since 1.0.0
  */
 public class SlotBuilder extends Locator {
     protected int id, x, y;

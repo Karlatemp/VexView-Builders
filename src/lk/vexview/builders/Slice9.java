@@ -10,6 +10,7 @@ import java.util.function.Consumer;
 
 /**
  * 9 Slice 缩放信息.
+ *
  * <p>
  * 使用9 Slice作为背景:
  * <pre>{@code
@@ -44,7 +45,7 @@ import java.util.function.Consumer;
  * }</pre>
  *
  * @author Karlatemp
- * @since 2.6
+ * @since 1.0.0
  */
 public class Slice9 extends Locator implements Consumer<GuiBuilder> {
     public int left, right, top, bottom;

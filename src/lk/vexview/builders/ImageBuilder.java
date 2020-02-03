@@ -19,7 +19,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.Objects;
 
 /**
- * 一个[图片/HUD/Tag]构造器
+ * 一个[图片/HUD/Tag]构造器.
  *
  * <pre>{@code
  * VexImage image = ImageBuilder.builder()
@@ -132,6 +132,7 @@ public class ImageBuilder extends Locator {
      *
      * @param hover Hover信息
      * @return 构建器本身
+     * @since 1.0.3
      */
     @BuildersModuleVersion("1.0.3")
     public ImageBuilder hover(VexHoverText hover) {

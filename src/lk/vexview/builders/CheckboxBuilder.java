@@ -12,8 +12,8 @@ import java.lang.invoke.MethodHandles;
 import java.util.Objects;
 
 /**
- * 一个{@link VexCheckBox}的构建器
- * <p>
+ * 一个{@link VexCheckBox}的构建器.
+ *
  * <pre>{@code
  * VexCheckBox check = CheckboxBuilder.builder()
  *      .background("[local]c.unchecked.png","[local]c.checked.png")
@@ -22,7 +22,7 @@ import java.util.Objects;
  * }</pre>
  *
  * @author Karlatemp
- * @since 2.6
+ * @since 1.0.0
  */
 public class CheckboxBuilder extends Locator {
     protected int id;

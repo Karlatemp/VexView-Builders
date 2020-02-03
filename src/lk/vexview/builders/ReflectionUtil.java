@@ -18,7 +18,7 @@ import java.util.function.Predicate;
  * 别看了，内部实现不是给你用的
  *
  * @author Karlatemp
- * @since 2.6
+ * @since 1.0.0
  */
 public class ReflectionUtil {
     @SuppressWarnings("unchecked")
@@ -98,6 +98,7 @@ public class ReflectionUtil {
         }
     }
 
+    @BuildersModuleVersion("1.0.3")
     static <T, V extends T> V copyTo(T from, Class<?> start, Class<V> to) {
         if (!start.isAssignableFrom(to)) {
             throw new ClassCastException(to + " not " + start + "'s sub class");

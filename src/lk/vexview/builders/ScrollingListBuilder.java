@@ -22,7 +22,7 @@ import java.util.function.Function;
  * @see GuiBuilder
  * @see #componentLocation(int, int)
  * @see #componentOffset(int, int)
- * @since 2.6
+ * @since 1.0.0
  */
 public class ScrollingListBuilder extends Locator {
     public int width, height, fullHeight, rightOffset, bottomOffset;

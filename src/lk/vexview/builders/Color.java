@@ -11,7 +11,7 @@ import java.util.Locale;
  * 一个颜色
  *
  * @author Karlatemp
- * @since 2.6
+ * @since 1.0.0
  */
 public class Color {
     public int code = 0xFF000000;

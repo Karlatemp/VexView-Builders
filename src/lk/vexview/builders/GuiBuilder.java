@@ -26,7 +26,7 @@ import java.util.function.Function;
 import java.util.logging.Level;
 
 /**
- * VexGui的快速构造器
+ * VexGui的快速构造器.
  *
  * <pre>{@code
  * VexViewAPI.openGUI(p, GuiBuilder.builder()
@@ -35,7 +35,7 @@ import java.util.logging.Level;
  * }</pre>
  *
  * @author Karlatemp
- * @since 2.6
+ * @since 1.0.0
  */
 public class GuiBuilder extends Locator {
     /**

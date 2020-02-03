@@ -19,8 +19,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Consumer;
 
 /**
- * VexView Channel的快速构造器
- * <p>
+ * VexView Channel的快速构造器.
+ *
  * <pre>{@code
  * ChannelBuilder.builder()
  *      .name("Channel From Builder")
@@ -34,7 +34,7 @@ import java.util.function.Consumer;
  * }</pre>
  *
  * @author Karlatemp
- * @since 2.6
+ * @since 1.0.0
  */
 public class ChannelBuilder implements Listener {
     static final Plugin plugin = Bukkit.getPluginManager().getPlugin("VexView");

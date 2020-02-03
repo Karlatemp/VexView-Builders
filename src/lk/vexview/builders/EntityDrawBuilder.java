@@ -23,8 +23,8 @@ import java.util.Objects;
 import java.util.UUID;
 
 /**
- * {@link VexEntityDraw} {@link VexEntityDrawTag}{@link VexEntityDrawShow} 的快速构造器
- * <p>
+ * {@link VexEntityDraw} {@link VexEntityDrawTag}{@link VexEntityDrawShow} 的快速构造器.
+ *
  * <pre>{@code
  * VexEntityDraw draw = EntityDrawBuilder.builder()
  *      .of( entity )
@@ -41,7 +41,7 @@ import java.util.UUID;
  *
  * @param <T> 实体类型
  * @author Karlatemp
- * @since 2.6
+ * @since 1.0.0
  */
 public class EntityDrawBuilder<T extends Entity> extends Locator {
     static {

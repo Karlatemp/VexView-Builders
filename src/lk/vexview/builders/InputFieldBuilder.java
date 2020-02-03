@@ -18,7 +18,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * VexInputField和VexTextArea的快速构造器
+ * VexInputField和VexTextArea的快速构造器.
+ *
  * <pre>{@code
  * InputFieldBuilder.builder()
  *      // .area()  // 这是一个VexTextArea
@@ -27,7 +28,7 @@ import java.util.List;
  * }</pre>
  *
  * @author Karlatemp
- * @since 2.6
+ * @since 1.0.0
  */
 public class InputFieldBuilder extends Locator {
     protected int width, height, maxLength = Integer.MAX_VALUE, id;

@@ -23,7 +23,8 @@ import java.lang.invoke.MethodHandles;
 import java.util.Objects;
 
 /**
- * Base64 图片构造器
+ * Base64 图片构造器.
+ *
  * <p>
  * <pre>{@code
  *      VexBase64Image image = ImageBuilder.builder().base64().source(
@@ -36,7 +37,7 @@ import java.util.Objects;
  *
  * @author Karlatemp
  * @see lk.vexview.builders.ImageBuilder
- * @since 2.6
+ * @since 1.0.0
  */
 public class Base64ImageBuilder extends ImageBuilder {
     protected String id;

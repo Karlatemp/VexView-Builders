@@ -16,8 +16,8 @@ import java.lang.invoke.MethodHandles;
 import java.util.Objects;
 
 /**
- * 这是一个按钮的构造器
- * <p>
+ * 这是一个按钮的构造器.
+ *
  * <pre>
  * {@code
  *      VexButton button = ButtonBuilder.builder().background(
@@ -37,7 +37,7 @@ import java.util.Objects;
  * </pre>
  *
  * @author Karlatemp
- * @since 2.6
+ * @since 1.0.0
  */
 @BuilderCommit("1.0.3: extends Locator")
 public class ButtonBuilder extends Locator {//@version 1.0.3: Extends Locator.

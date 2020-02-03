@@ -18,7 +18,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.Objects;
 
 /**
- * 一个SplitImage的构建器
+ * 一个SplitImage的构建器.
  *
  * <pre>{@code
  *  VexSplitImage image = ImageBuilder.builder().split()
@@ -35,7 +35,7 @@ import java.util.Objects;
  *
  * @author Karlatemp
  * @see lk.vexview.builders.ImageBuilder
- * @since 2.6
+ * @since 1.0.0
  */
 public class SplitImageBuilder extends ImageBuilder {
     @Override

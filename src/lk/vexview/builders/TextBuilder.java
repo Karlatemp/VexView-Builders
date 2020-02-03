@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.function.Function;
 
 /**
- * VexView 文本组件的构建器
+ * VexView 文本组件的构建器.
  *
  * <pre>{@code
  * VexText text = TextBuilder.builder()
@@ -40,7 +40,7 @@ import java.util.function.Function;
  * }</pre>
  *
  * @author Karlatemp
- * @since 2.6
+ * @since 1.0.0
  */
 public class TextBuilder extends Locator {
     protected int textWidth;
@@ -95,9 +95,17 @@ public class TextBuilder extends Locator {
         return new VexText(xOffset, yOffset, lines, scale, hover, textWidth);
     }
 
+    /**
+     * 定义构建的Text的Hover信息
+     *
+     * @param hover     hover 信息
+     * @param textWidth 文本HoverText的显示范围宽度
+     * @return 构建器本身
+     * @since 1.0.3
+     */
     @BuildersModuleVersion("1.0.3")
-    public TextBuilder hover(Function<TextBuilder, TextBuilder> action, int textWidth) {
-        hover = action.apply(builder()).buildHover();
+    public TextBuilder hover(VexHoverText hover, int textWidth) {
+        this.hover = hover;
         this.textWidth = textWidth;
         return this;
     }
