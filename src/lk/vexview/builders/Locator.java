@@ -19,7 +19,7 @@ import java.util.function.Consumer;
  * }</pre>
  *
  * @author Karlatemp
- * @since 1.0
+ * @since 1.0.0
  */
 public class Locator {
     static {

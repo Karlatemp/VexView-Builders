@@ -9,7 +9,7 @@ import org.bukkit.entity.Entity;
 
 /**
  * @author Karlatemp
- * @since 2.6
+ * @since 1.0.0
  */
 public class Builders {
     public static TextBuilder texts() {

@@ -33,7 +33,7 @@ import java.util.Objects;
  * @author Karlatemp
  * @see SplitImageBuilder
  * @see Base64ImageBuilder
- * @since 2.6
+ * @since 1.0.0
  */
 public class ImageBuilder extends Locator {
     protected int width, height;
