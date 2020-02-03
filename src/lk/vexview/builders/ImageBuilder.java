@@ -5,6 +5,7 @@
 
 package lk.vexview.builders;
 
+import lk.vexview.gui.components.VexHoverText;
 import lk.vexview.gui.components.VexImage;
 import lk.vexview.gui.components.expand.VexGifImage;
 import lk.vexview.hud.VexImageShow;
@@ -43,6 +44,8 @@ public class ImageBuilder extends Locator {
     static {
         ReflectionUtil.register(ImageBuilder.class, MethodHandles.lookup());
     }
+
+    protected VexHoverText hover;
 
 
     public static ImageBuilder builder() {
@@ -125,12 +128,37 @@ public class ImageBuilder extends Locator {
     }
 
     /**
+     * 设置Hover信息
+     *
+     * @param hover Hover信息
+     * @return 构建器本身
+     */
+    @BuildersModuleVersion("1.0.3")
+    public ImageBuilder hover(VexHoverText hover) {
+        this.hover = hover;
+        return this;
+    }
+
+    /**
      * 构建图片
      *
      * @return 构建的图片
      */
     public VexImage build() {
+        VexImage image = build0();
+        if (hover != null)
+            image.setHover(hover);
+        return image;
+    }
+
+    @BuildersModuleVersion("1.0.3; for edit hover text.")
+    protected VexImage build0() {
         return new VexImage(background, xOffset, yOffset, width, height);
+    }
+
+    @Override
+    public ImageBuilder copy(Locator newLocation) {
+        return (ImageBuilder) super.copy(newLocation);
     }
 
     /**
@@ -140,7 +168,9 @@ public class ImageBuilder extends Locator {
      * @return GIF图片
      */
     public VexGifImage gif(int interval) {
-        return new VexGifImage(background, xOffset, yOffset, width, height, interval);
+        VexGifImage gif = new VexGifImage(background, xOffset, yOffset, width, height, interval);
+        if (hover != null) gif.setHover(hover);
+        return gif;
     }
 
     /**
