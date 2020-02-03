@@ -98,16 +98,15 @@ public class ReflectionUtil {
         }
     }
 
-    static <T, V extends T> V copyTo(T from, Class<V> to) {
-        final Class<?> type = from.getClass();
-        if (!type.isAssignableFrom(to)) {
-            throw new ClassCastException(to + " not " + type + "'s sub class");
+    static <T, V extends T> V copyTo(T from, Class<?> start, Class<V> to) {
+        if (!start.isAssignableFrom(to)) {
+            throw new ClassCastException(to + " not " + start + "'s sub class");
         }
-        if (!fields.containsKey(type)) {
-            throw new ClassCastException(type + " is not regsitered in reflection util.");
+        if (!fields.containsKey(start)) {
+            throw new ClassCastException(start + " is not registered in reflection util.");
         }
         V v = allocate(to);
-        Class<?> matching = type;
+        Class<?> matching = start;
         while (matching != null) {
             for (BiConsumer<Object, Object> copyor : fields.get(matching)) {
                 copyor.accept(from, v);
@@ -115,6 +114,11 @@ public class ReflectionUtil {
             matching = matching.getSuperclass();
         }
         return v;
+
+    }
+
+    static <T, V extends T> V copyTo(T from, Class<V> to) {
+        return copyTo(from, from.getClass(), to);
     }
 
     private static BiConsumer<Object, Object> build(Field f, MethodHandles.Lookup lk) {
