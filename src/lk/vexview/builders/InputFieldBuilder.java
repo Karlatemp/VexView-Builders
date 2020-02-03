@@ -12,6 +12,7 @@ import lk.vexview.gui.components.VexTextField;
 import lk.vexview.gui.components.expand.VexColorfulTextArea;
 import lk.vexview.gui.components.expand.VexColorfulTextField;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,6 +37,15 @@ public class InputFieldBuilder extends Locator {
 
     public static InputFieldBuilder builder() {
         return new InputFieldBuilder();
+    }
+
+    static {
+        ReflectionUtil.register(InputFieldBuilder.class, MethodHandles.lookup());
+    }
+
+    @Override
+    public InputFieldBuilder copy(Locator newLocation) {
+        return (InputFieldBuilder) super.copy(newLocation);
     }
 
     /**
@@ -143,14 +153,28 @@ public class InputFieldBuilder extends Locator {
     protected Color main_color, side_color;
 
     /**
-     * 带颜色的field输入框
+     * 与 color 一样的效果
+     *
+     * @see #color(Color, Color)
+     * @since 1.0.0
+     */
+    public InputFieldBuilder fieldColor(Color main_color, Color side_color) {
+        return color(main_color, side_color);
+    }
+
+    /**
+     * 带颜色的输入框
      *
      * @param main_color 主要颜色（例如0x70EEAD0E颜色，70是alpha值（透明度），EEAD0E是实际颜色）
      * @param side_color 同上
      * @return 构建器本身
      * @see VexColorfulTextField
+     * @see VexColorfulTextArea
+     * @since 1.0.3
      */
-    public InputFieldBuilder fieldColor(Color main_color, Color side_color) {
+    @BuildersModuleVersion("1.0.3")
+    public InputFieldBuilder color(Color main_color, Color side_color) {
+
         this.main_color = main_color;
         this.side_color = side_color;
         return this;
