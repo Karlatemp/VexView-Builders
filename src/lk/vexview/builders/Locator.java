@@ -19,7 +19,7 @@ import java.util.function.Consumer;
  * }</pre>
  *
  * @author Karlatemp
- * @since 2.6
+ * @since 1.0
  */
 public class Locator {
     static {
@@ -78,6 +78,32 @@ public class Locator {
 
     public interface ComponentBuildAction<R> {
         R build(int x, int y);
+    }
+
+    /**
+     * 生成此对象的副本.
+     *
+     * <pre>{@code
+     * final ButtonBuilder baseButton = ButtonBuilder.builder()
+     *      .size(width, height).background(......);
+     *
+     * GuiBuilder.builder()
+     *      .button(loc -> baseButton.copy(loc).id( "Button 1 id" ).text( "Button 1 Text" ))
+     *      .button(loc -> baseButton.copy(loc).id( "Button 2 id" ).text( "Button 2 Text" ))
+     *      ...;
+     * }</pre>
+     *
+     * @param newLocation 如果有, 副本位置将于此位置相同
+     * @return 副本
+     * @since 1.0.3
+     */
+    @BuildersModuleVersion("1.0.3")
+    public Locator copy(Locator newLocation) {
+        Locator loc = ReflectionUtil.copyTo(this, getClass());
+        if (newLocation != null) {
+            loc.location(newLocation.xOffset, newLocation.yOffset);
+        }
+        return loc;
     }
 
     /**
