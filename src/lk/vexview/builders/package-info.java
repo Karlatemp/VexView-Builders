@@ -10,10 +10,29 @@
  * <span display="color: white; background: white;">QQ: 3279826484</span>
  * <p>
  * 项目开源地址: <a href="https://github.com/Karlatemp/VexView-Builders">VexView-Builders</a><br/>
- * 当前模块版本： 1.0.2
+ * 当前模块版本： 1.0.3
  *
  * @author Karlatemp
- * @version 1.0.2
+ * @version 1.0.3
  * @since 2.6
  */
+@BuildersModuleVersion("1.0.3")
 package lk.vexview.builders;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+// @version 1.0.3: Mark module version
+// Commits
+@Retention(RetentionPolicy.CLASS)
+@BuilderCommit("Source Location: package-info.java")
+@interface BuilderCommit {
+    String value();
+}
+
+// @version 1.0.3: Mark module version
+@Retention(RetentionPolicy.CLASS)
+@BuilderCommit("Tell user method add version/Module current version | Source Location: package-info.java")
+@interface BuildersModuleVersion {
+    String value();
+}
