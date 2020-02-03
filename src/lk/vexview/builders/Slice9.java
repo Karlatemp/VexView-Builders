@@ -5,6 +5,7 @@
 
 package lk.vexview.builders;
 
+import java.lang.invoke.MethodHandles;
 import java.util.function.Consumer;
 
 /**
@@ -53,6 +54,15 @@ public class Slice9 extends Locator implements Consumer<GuiBuilder> {
             isw, ish,
             icw, ich;
 
+    static {
+        ReflectionUtil.register(EntityDrawBuilder.class, MethodHandles.lookup());
+    }
+
+    @Override
+    public Slice9 copy(Locator newLocation) {
+        return (Slice9) super.copy(newLocation);
+    }
+
     public static Slice9 slice9() {
         return new Slice9();
     }
@@ -62,20 +72,7 @@ public class Slice9 extends Locator implements Consumer<GuiBuilder> {
 
     @Override
     public Slice9 clone() {
-        Slice9 sr = new Slice9();
-        sr.left = left;
-        sr.right = right;
-        sr.top = top;
-        sr.bottom = bottom;
-        sr.width = width;
-        sr.height = height;
-        sr.sudoku = sudoku;
-        sr.center = center;
-        sr.isw = isw;
-        sr.ish = ish;
-        sr.icw = icw;
-        sr.ich = ich;
-        return sr;
+        return copy(null);
     }
 
     @Override

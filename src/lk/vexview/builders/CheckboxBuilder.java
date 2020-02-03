@@ -8,6 +8,7 @@ package lk.vexview.builders;
 import lk.vexview.gui.components.VexCheckBox;
 import lk.vexview.gui.components.VexHoverText;
 
+import java.lang.invoke.MethodHandles;
 import java.util.Objects;
 
 /**
@@ -31,8 +32,17 @@ public class CheckboxBuilder extends Locator {
     protected VexHoverText hover;
     protected String background, focus;
 
+    static {
+        ReflectionUtil.register(CheckboxBuilder.class, MethodHandles.lookup());
+    }
+
     public static CheckboxBuilder builder() {
         return new CheckboxBuilder();
+    }
+
+    @Override
+    public CheckboxBuilder copy(Locator newLocation) {
+        return (CheckboxBuilder) super.copy(newLocation);
     }
 
     /**

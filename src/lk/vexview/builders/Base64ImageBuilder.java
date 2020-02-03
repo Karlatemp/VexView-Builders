@@ -173,6 +173,11 @@ public class Base64ImageBuilder extends ImageBuilder {
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    protected VexImage build0() {
+        throw new UnsupportedOperationException();
+    }
+
     /**
      * 使用此构建器的信息构建一个Base64图片
      *
@@ -187,6 +192,11 @@ public class Base64ImageBuilder extends ImageBuilder {
             }
             return new VexBase64Image(source, id, xOffset, yOffset, width, height, hover);
         }
+    }
+
+    @Override
+    public Base64ImageBuilder copy(Locator newLocation) {
+        return (Base64ImageBuilder) super.copy(newLocation);
     }
 
     /**

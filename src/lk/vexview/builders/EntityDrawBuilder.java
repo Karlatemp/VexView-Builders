@@ -59,6 +59,15 @@ public class EntityDrawBuilder<T extends Entity> extends Locator {
         private T entity;
 
         @Override
+        public EntityEntityDrawBuilder<T> copy(Locator newLocation) {
+            return (EntityEntityDrawBuilder<T>) super.copy(newLocation);
+        }
+
+        static {
+            ReflectionUtil.register(EntityEntityDrawBuilder.class, MethodHandles.lookup());
+        }
+
+        @Override
         public PlayerDrawBuilder player() {
             throw new UnsupportedOperationException("Entity entity draw builder cannot cast to PlayerDrawBuilder");
         }
@@ -88,6 +97,15 @@ public class EntityDrawBuilder<T extends Entity> extends Locator {
 
     public static class EntityTypeDrawBuilder<T extends Entity> extends EntityDrawBuilder<T> {
         private EntityType type;
+
+        static {
+            ReflectionUtil.register(EntityTypeDrawBuilder.class, MethodHandles.lookup());
+        }
+
+        @Override
+        public EntityTypeDrawBuilder<T> copy(Locator newLocation) {
+            return (EntityTypeDrawBuilder<T>) super.copy(newLocation);
+        }
 
         @Override
         public <V extends Entity> EntityDrawBuilder<V> of(V entity) {
@@ -120,6 +138,10 @@ public class EntityDrawBuilder<T extends Entity> extends Locator {
     public static class PlayerDrawBuilder extends EntityDrawBuilder<Player> {
         public static class PlayerEntityDrawBuilder extends PlayerDrawBuilder {
             private Player entity;
+
+            static {
+                ReflectionUtil.register(PlayerEntityDrawBuilder.class, MethodHandles.lookup());
+            }
 
             @Override
             public VexPlayerDraw build() {
@@ -157,6 +179,10 @@ public class EntityDrawBuilder<T extends Entity> extends Locator {
             private UUID uniqueId;
             private String name;
 
+            static {
+                ReflectionUtil.register(PlayerNUDrawBuilder.class, MethodHandles.lookup());
+            }
+
             @Override
             public PlayerDrawBuilder player(WrappedGameProfile profile) {
                 this.name = profile.getName();
@@ -180,6 +206,10 @@ public class EntityDrawBuilder<T extends Entity> extends Locator {
         public static class PlayerProfileBuilder extends PlayerDrawBuilder {
             private WrappedGameProfile profile;
 
+            static {
+                ReflectionUtil.register(PlayerProfileBuilder.class, MethodHandles.lookup());
+            }
+
             @Override
             public PlayerDrawBuilder player(String name, UUID uniqueId) {
                 return player(new WrappedGameProfile(uniqueId, name));
@@ -197,6 +227,11 @@ public class EntityDrawBuilder<T extends Entity> extends Locator {
                 Objects.requireNonNull(profile.getProfile(), "profile's profile");
                 return new VexPlayerDraw(xOffset, yOffset, scale, profile.getProfile());
             }
+        }
+
+        @Override
+        public PlayerDrawBuilder copy(Locator newLocation) {
+            return (PlayerDrawBuilder) super.copy(newLocation);
         }
 
         @Override
@@ -242,6 +277,12 @@ public class EntityDrawBuilder<T extends Entity> extends Locator {
 
     public PlayerDrawBuilder player(String name, UUID uniqueId) {
         return ReflectionUtil.copyTo(this, PlayerDrawBuilder.PlayerNUDrawBuilder.class).player(name, uniqueId);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public EntityDrawBuilder<T> copy(Locator newLocation) {
+        return (EntityDrawBuilder<T>) super.copy(newLocation);
     }
 
     public PlayerDrawBuilder player(WrappedGameProfile profile) {

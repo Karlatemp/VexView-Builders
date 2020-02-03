@@ -17,6 +17,7 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.lang.invoke.MethodHandles;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -58,6 +59,10 @@ public class GuiBuilder extends Locator {
      * 此GUI是否可以关闭
      */
     public boolean closable = true;
+
+    static {
+        ReflectionUtil.register(GuiBuilder.class, MethodHandles.lookup());
+    }
 
     /**
      * 设置Gui生成时使用的大小
@@ -186,14 +191,8 @@ public class GuiBuilder extends Locator {
      * @return 新的运行时
      */
     public GuiBuilder newContext() {
-        GuiBuilder copy = ReflectionUtil.allocate(getClass());
+        GuiBuilder copy = ReflectionUtil.copyTo(this, GuiBuilder.class, GuiBuilder.class);
         copy.parent = this;
-        copy.components = components;
-        copy.xOffset = xOffset;
-        copy.yOffset = yOffset;
-        copy.width = width;
-        copy.height = height;
-        copy.closable = closable;
         return copy;
     }
 
@@ -467,6 +466,11 @@ public class GuiBuilder extends Locator {
         gui.setComponents(ReflectionUtil.wrappedList(components));
         gui.setClosable(closable);
         return gui;
+    }
+
+    @Override
+    public GuiBuilder copy(Locator newLocation) {
+        return (GuiBuilder) super.copy(newLocation);
     }
 
     /**

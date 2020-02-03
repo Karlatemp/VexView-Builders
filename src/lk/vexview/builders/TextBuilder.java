@@ -14,6 +14,7 @@ import lk.vexview.tag.components.VexTextTag;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * VexView 文本组件的构建器
@@ -94,6 +95,13 @@ public class TextBuilder extends Locator {
         return new VexText(xOffset, yOffset, lines, scale, hover, textWidth);
     }
 
+    @BuildersModuleVersion("1.0.3")
+    public TextBuilder hover(Function<TextBuilder, TextBuilder> action, int textWidth) {
+        hover = action.apply(builder()).buildHover();
+        this.textWidth = textWidth;
+        return this;
+    }
+
     public VexHoverText buildHover() {
         preCheck();
         return new VexHoverText(lines);
@@ -132,5 +140,10 @@ public class TextBuilder extends Locator {
         return new VexTextTag(
                 id, x, y, z, lines.get(0), black, td
         );
+    }
+
+    @Override
+    public TextBuilder copy(Locator newLocation) {
+        return (TextBuilder) super.copy(newLocation);
     }
 }

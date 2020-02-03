@@ -38,6 +38,11 @@ import java.util.Objects;
  * @since 2.6
  */
 public class SplitImageBuilder extends ImageBuilder {
+    @Override
+    public SplitImageBuilder copy(Locator newLocation) {
+        return (SplitImageBuilder) super.copy(newLocation);
+    }
+
     static class MCImageBuilder extends SplitImageBuilder {
         static {
             ReflectionUtil.register(MCImageBuilder.class, MethodHandles.lookup());
@@ -49,7 +54,7 @@ public class SplitImageBuilder extends ImageBuilder {
         }
 
         @Override
-        public VexSplitImage build() {
+        protected VexSplitImage build0() {
             return buildMc();
         }
 
@@ -112,7 +117,7 @@ public class SplitImageBuilder extends ImageBuilder {
     }
 
     @Override
-    public VexSplitImage build() {
+    protected VexSplitImage build0() {
         return new VexSplitImage(
                 background, xOffset, yOffset,
                 splitXOffset, splitYOffset,

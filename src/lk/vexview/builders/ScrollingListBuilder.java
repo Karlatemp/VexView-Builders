@@ -8,6 +8,7 @@ package lk.vexview.builders;
 import lk.vexview.gui.components.*;
 import org.bukkit.inventory.ItemStack;
 
+import java.lang.invoke.MethodHandles;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -46,6 +47,15 @@ public class ScrollingListBuilder extends Locator {
         this.leftOffset = leftOffset;
         this.topOffset = topOffset;
         return this;
+    }
+
+    static {
+        ReflectionUtil.register(ScrollingListBuilder.class, MethodHandles.lookup());
+    }
+
+    @Override
+    public ScrollingListBuilder copy(Locator newLocation) {
+        return (ScrollingListBuilder) super.copy(newLocation);
     }
 
     /**

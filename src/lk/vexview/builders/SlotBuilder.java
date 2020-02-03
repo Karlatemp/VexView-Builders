@@ -8,6 +8,8 @@ package lk.vexview.builders;
 import lk.vexview.gui.components.VexSlot;
 import org.bukkit.inventory.ItemStack;
 
+import java.lang.invoke.MethodHandles;
+
 /**
  * 一个{@link VexSlot}的快速构造器
  * <p><pre>{@code
@@ -26,6 +28,15 @@ public class SlotBuilder extends Locator {
     protected ItemStack item;
 
     protected SlotBuilder() {
+    }
+
+    static {
+        ReflectionUtil.register(SlotBuilder.class, MethodHandles.lookup());
+    }
+
+    @Override
+    public SlotBuilder copy(Locator newLocation) {
+        return (SlotBuilder) super.copy(newLocation);
     }
 
     public static SlotBuilder builder() {
