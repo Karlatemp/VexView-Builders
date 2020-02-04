@@ -1,4 +1,10 @@
 # VexView-Builder 更新记录
+1.0.4
+    Slot Builder BUG Fix
+1.0.3
+    添加 Locator.copy
+    ImageBuilder.hover
+    InputFieldBuilder.fieldColor => color
 1.0.2
     ChannelBuilder#getChannel()Llk/vexview/chat/VexChatChannel;
 1.0.1
