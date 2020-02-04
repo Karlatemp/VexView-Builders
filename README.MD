@@ -1,4 +1,4 @@
-### VexView - 1.0.2 - Builder Module by Karlatemp.
+### VexView - 1.0.4 - Builder Module by Karlatemp.
 
 ---
 
