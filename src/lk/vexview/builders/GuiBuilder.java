@@ -105,35 +105,13 @@ public class GuiBuilder extends Locator {
                 height.set(Math.max(height.get(), slot.getY() + 16));
             } else if (components instanceof VexText) {
                 VexText text = (VexText) components;
-                int longest = 0;
-                final MinecraftFont font = MinecraftFont.Font;
-                int linesHeight = 0;
-                for (String comp : text.getText()) {
-                    for (String line : InputFieldBuilder.split(comp)) {
-                        linesHeight++;
-                        CharBuffer buffer = CharBuffer.wrap(line);
-                        int currentWidth = 0;
-                        while (buffer.hasRemaining()) {
-                            char next = buffer.get();
-                            if (next == '§') {
-                                // Color code, skip
-                                if (buffer.hasRemaining()) buffer.get();
-                                continue;
-                            }
-                            final MapFont.CharacterSprite sprite = font.getChar(next);
-                            if (sprite == null) {
-                                // Error Glyph
-                                currentWidth += 13;
-                            } else {
-                                currentWidth += sprite.getWidth();
-                            }
-                        }
-                        longest = Math.max(longest, currentWidth);
-                    }
-                }
-                linesHeight *= font.getHeight();
-                width.set(Math.max(width.get(), (int) (text.getX() + Math.abs(text.getScale() * longest))));
-                height.set(Math.max(height.get(), (int) (text.getY() + Math.abs(text.getScale() * linesHeight))));
+                AtomicInteger longest = new AtomicInteger(0);
+                AtomicInteger linesHeight = new AtomicInteger(0);
+
+                MinecraftFontSizeCalculation.calculatedSize(longest, linesHeight, text.getText());
+
+                width.set(Math.max(width.get(), (int) (text.getX() + Math.abs(text.getScale() * longest.get()))));
+                height.set(Math.max(height.get(), (int) (text.getY() + Math.abs(text.getScale() * linesHeight.get()))));
             } else if (components instanceof VexScrollingList) {
                 VexScrollingList list = (VexScrollingList) components;
                 width.set(Math.max(width.get(), list.getX() + list.getWidth()));

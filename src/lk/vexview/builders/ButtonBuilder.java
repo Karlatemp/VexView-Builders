@@ -13,7 +13,9 @@ import lk.vexview.hud.VexButtonShow;
 import org.bukkit.map.MinecraftFont;
 
 import java.lang.invoke.MethodHandles;
+import java.util.Collections;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 这是一个按钮的构造器.
@@ -181,8 +183,11 @@ public class ButtonBuilder extends Locator {//@version 1.0.3: Extends Locator.
         if (text == null) {
             return size(leftOffset + rightOffset, topOffset + bottomOffset);
         } else {
-            return size(leftOffset + rightOffset + MinecraftFont.Font.getWidth(text),
-                    topOffset + bottomOffset + MinecraftFont.Font.getHeight());
+            AtomicInteger wid = new AtomicInteger();
+            AtomicInteger height = new AtomicInteger();
+            MinecraftFontSizeCalculation.calculatedSize(wid, height, Collections.singletonList(text));
+            return size(leftOffset + rightOffset + wid.get(),
+                    topOffset + bottomOffset + height.get());
         }
     }
 
