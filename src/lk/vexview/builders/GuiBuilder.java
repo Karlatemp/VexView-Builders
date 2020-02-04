@@ -10,6 +10,7 @@ import lk.vexview.gui.VexInventoryGui;
 import lk.vexview.gui.components.*;
 import lk.vexview.gui.components.expand.VexBase64Image;
 import org.bukkit.entity.Player;
+import org.bukkit.map.MapFont;
 import org.bukkit.map.MinecraftFont;
 
 import javax.imageio.ImageIO;
@@ -18,6 +19,7 @@ import javax.imageio.stream.ImageInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
+import java.nio.CharBuffer;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -105,10 +107,31 @@ public class GuiBuilder extends Locator {
                 VexText text = (VexText) components;
                 int longest = 0;
                 final MinecraftFont font = MinecraftFont.Font;
-                int linesHeight = font.getHeight() * text.getText().size();
-                for (String line : text.getText()) {
-                    longest = Math.max(longest, font.getWidth(line));
+                int linesHeight = 0;
+                for (String comp : text.getText()) {
+                    for (String line : InputFieldBuilder.split(comp)) {
+                        linesHeight++;
+                        CharBuffer buffer = CharBuffer.wrap(line);
+                        int currentWidth = 0;
+                        while (buffer.hasRemaining()) {
+                            char next = buffer.get();
+                            if (next == '§') {
+                                // Color code, skip
+                                if (buffer.hasRemaining()) buffer.get();
+                                continue;
+                            }
+                            final MapFont.CharacterSprite sprite = font.getChar(next);
+                            if (sprite == null) {
+                                // Error Glyph
+                                currentWidth += 13;
+                            } else {
+                                currentWidth += sprite.getWidth();
+                            }
+                        }
+                        longest = Math.max(longest, currentWidth);
+                    }
                 }
+                linesHeight *= font.getHeight();
                 width.set(Math.max(width.get(), (int) (text.getX() + Math.abs(text.getScale() * longest))));
                 height.set(Math.max(height.get(), (int) (text.getY() + Math.abs(text.getScale() * linesHeight))));
             } else if (components instanceof VexScrollingList) {
