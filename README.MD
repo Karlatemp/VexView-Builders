@@ -17,6 +17,8 @@ In VexView.net: https://www.vexview.net/resources/2/
 
 In MCBBS.net: https://www.mcbbs.net/thread-786587-1-1.html
 
+### Copyright
+
 ---
 ~~~
 Copyright (c) 2018-2020 Karlatemp. All rights reserved.
