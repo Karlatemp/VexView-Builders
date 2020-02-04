@@ -25,7 +25,7 @@ import java.lang.invoke.MethodHandles;
  * @since 1.0.0
  */
 public class SlotBuilder extends Locator {
-    protected int id, x, y;
+    protected int id;
     protected ItemStack item;
 
     protected SlotBuilder() {
@@ -73,6 +73,7 @@ public class SlotBuilder extends Locator {
     }
 
     public VexSlot build() {
-        return new VexSlot(id, x, y, item);
+        // @version 1.0.4: Location error fix.
+        return new VexSlot(id, xOffset, yOffset, item);
     }
 }
