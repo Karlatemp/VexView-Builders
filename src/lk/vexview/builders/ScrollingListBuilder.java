@@ -290,6 +290,8 @@ public class ScrollingListBuilder extends Locator {
         builder.components = list.getComponents();
         builder.height = list.getHeight();
         builder.width = list.getWidth();
+        // @version 1.0.5: field missing fix
+        builder.fullHeight = list.getFullHeight();
         builder.xOffset = list.getX();
         builder.yOffset = list.getY();
         return builder;

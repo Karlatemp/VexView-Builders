@@ -10,15 +10,15 @@
  * <span display="color: white; background: white;">QQ: 3279826484</span>
  * <p>
  * 项目开源地址: <a href="https://github.com/Karlatemp/VexView-Builders">VexView-Builders</a><br/>
- * 当前模块版本： 1.0.4
+ * 当前模块版本： 1.0.5
  * <p>
  * 注意: Builder于VexView v2.6版本开始内置, 此包的类开始版本是 "此模块版本" 并非 VexView 版本
  *
  * @author Karlatemp
- * @version 1.0.4
+ * @version 1.0.5
  * @since 2.6
  */
-@BuildersModuleVersion("1.0.4")
+@BuildersModuleVersion("1.0.5")
 @BuilderCommit("GitHub: https://github.com/Karlatemp/VexView-Builders")
 package lk.vexview.builders;
 

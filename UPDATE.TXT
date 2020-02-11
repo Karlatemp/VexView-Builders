@@ -1,4 +1,6 @@
 # VexView-Builder 更新记录
+1.0.5
+    ScrollingBuilder #of() fullingHeight missing fix.
 1.0.4
     Slot Builder BUG Fix
 1.0.3
